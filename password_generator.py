@@ -11,10 +11,17 @@ special_char = list(string.punctuation)
 
 
 def main():
+    """
+    Main function to run the password generator.
+    """
+    welcome()
     inputs()
 
 
 def inputs():
+    """
+    Get user inputs for the number of letters, numbers, and special characters.
+    """
     letter_count = int(input("How many letters in password? "))
     number_count = int(input("How many numbers in password? "))
     char_count = int(input("How many special characters in password? "))
@@ -22,21 +29,39 @@ def inputs():
     generate_password(letter_count, number_count, char_count)
     
 
+def welcome():
+    """
+    Print a welcome message.
+    """
+    text = "Welcome to password generator!"
+    split = "-" * len(text)
+    print(text, split, sep="\n")
+   
+    
+
 def generate_password(letter_count, number_count, char_count):
-    password = []
+    """
+    Generate a password based on user input counts.
+    -----------------------------------------------
+    Args:
+        letter_count (int)
+        number_count (int)
+        char_count (int)
+    """
+    password_chars = []
     
     for x in range(letter_count):
-        password.append(random.choice(letters))
+        password_chars.append(random.choice(letters))
         
     for x in range(number_count):
-        password.append(random.choice(numbers))
+        password_chars.append(random.choice(numbers))
         
     for x in range(char_count):    
-        password.append(random.choice(special_char))
+        password_chars.append(random.choice(special_char))
      
-    joined_password = "".join(password) 
-    print(joined_password)
-
+    random.shuffle(password_chars)
+    password = "".join(password_chars)
+    print(f"Generated password: {password}")
     
 
 if __name__ == "__main__":
